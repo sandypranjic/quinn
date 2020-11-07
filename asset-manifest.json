@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/quinn/static/css/main.2ba4c8cf.chunk.css",
+    "main.js": "/quinn/static/js/main.95529a82.chunk.js",
+    "main.js.map": "/quinn/static/js/main.95529a82.chunk.js.map",
+    "runtime-main.js": "/quinn/static/js/runtime-main.616c5aa4.js",
+    "runtime-main.js.map": "/quinn/static/js/runtime-main.616c5aa4.js.map",
+    "static/js/2.20e798e3.chunk.js": "/quinn/static/js/2.20e798e3.chunk.js",
+    "static/js/2.20e798e3.chunk.js.map": "/quinn/static/js/2.20e798e3.chunk.js.map",
+    "static/js/3.e8554ea4.chunk.js": "/quinn/static/js/3.e8554ea4.chunk.js",
+    "static/js/3.e8554ea4.chunk.js.map": "/quinn/static/js/3.e8554ea4.chunk.js.map",
+    "index.html": "/quinn/index.html",
+    "static/css/main.2ba4c8cf.chunk.css.map": "/quinn/static/css/main.2ba4c8cf.chunk.css.map",
+    "static/js/2.20e798e3.chunk.js.LICENSE.txt": "/quinn/static/js/2.20e798e3.chunk.js.LICENSE.txt",
+    "static/media/add.769773aa.svg": "/quinn/static/media/add.769773aa.svg",
+    "static/media/cart.78672b56.svg": "/quinn/static/media/cart.78672b56.svg",
+    "static/media/checkmark.8b7a86e6.svg": "/quinn/static/media/checkmark.8b7a86e6.svg",
+    "static/media/close.dca1bd8e.svg": "/quinn/static/media/close.dca1bd8e.svg",
+    "static/media/colon.f30bb1e8.svg": "/quinn/static/media/colon.f30bb1e8.svg",
+    "static/media/installportrait.2bcc061d.jpeg": "/quinn/static/media/installportrait.2bcc061d.jpeg",
+    "static/media/youaregood.39d5f064.png": "/quinn/static/media/youaregood.39d5f064.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.616c5aa4.js",
+    "static/js/2.20e798e3.chunk.js",
+    "static/css/main.2ba4c8cf.chunk.css",
+    "static/js/main.95529a82.chunk.js"
+  ]
+}
