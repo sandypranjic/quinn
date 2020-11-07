@@ -1,0 +1,98 @@
+html, body, h1, h2, h3, a, p, span, div, section, header, main, footer, button {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+.password {
+    width: 500px;
+    margin: 100px auto;
+    font-size: 1.3rem;
+}
+
+body {
+    @include text;
+    color: $text;
+}
+
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+button {
+    @include text;
+}
+
+// Text
+
+h1 {
+    font-size: 2.5rem;
+    @include accentText;
+}
+
+h2 {
+    @include accentText;
+    font-size: 2.3rem;
+}
+
+h3 {
+    @include text;
+    font-size: 1.3rem;
+}
+
+a {
+    color: $text;
+    text-decoration: none;
+}
+
+h1 a {
+    font-size: 2.5rem;
+}
+
+p, span, button {
+    color: $text;
+    font-size: 1.5rem;
+}
+
+section {
+    p {
+        line-height: 1.5;
+    }
+}
+
+// Fade-In Animation
+/* @keyframes duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name */
+.fadeIn {
+    animation: 1s ease-in 0s 1 forwards fadeIn;
+}
+
+.quickFadeIn {
+    animation: 0.3s ease-in 0s 1 forwards fadeIn;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
+
+.loading {
+    min-height: 100vh;
+}

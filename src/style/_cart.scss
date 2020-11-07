@@ -1,0 +1,75 @@
+.cart {
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    position: fixed;
+    border-left: 1px solid $accent2;
+    background-color: white;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.showCart {
+    right: 0;
+}
+.cartHeader {
+    display: flex;
+    padding: 10px;
+    background-color: $textAccent;
+    button {
+        width: 25px;
+        cursor: pointer;
+    }
+    img {
+        object-fit: contain;
+        width: 100%;
+    }
+}
+.items {
+    overflow-y: scroll;
+    height: calc(100vh - 28px - 21px - 96px);
+}
+.itemInCart {
+    width: 100%;
+    border-bottom: 1px solid $textAccent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    img {
+        width: 50%;
+        object-fit: contain;
+        // margin-bottom: 10px;
+        border: 1px solid $accent2;
+    }
+    h3 {
+        margin-bottom: 10px;
+    }
+}
+.proceedToCheckout {
+    padding: 25px;
+    background-color: $textAccent;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    a {
+        color: $text;
+        @include accentText;
+        font-size: 2.5rem;
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 15%;
+            display: block;
+            height: 5px;
+            width: 0;
+            background-color: $white;
+            transition: all 0.5s ease;
+        }
+        &:hover::after {
+            width: 70%;
+        }
+    }
+}

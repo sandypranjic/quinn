@@ -1,0 +1,23 @@
+// Fonts
+@import url("https://use.typekit.net/ser8idb.css");
+
+@mixin text {
+    font-family: azo-sans-web, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin accentText {
+    font-family: questa-grande, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+// Colours
+$text: #262626;
+$white: #ffffff;
+$border: rgba(38, 38, 38, 0.2);
+$lightBorder: rgba(38, 38, 38, 0.1);
+$textAccent: rgba(216, 145, 74, 0.3);
+$accent2: #815D41;
+$accentBackground: rgba(188, 150, 121, .1);
