@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 // Images
 import installPortrait from '../assets/installportrait.jpeg';
+import portrait2 from '../assets/portrait2.JPG';
 
 // Utilities
 import scrollToTop from '../utilities/scrollToTop';
@@ -16,6 +17,7 @@ const About = () => {
     return (
         <section className="fadeIn wrapper about">
             <div className="imageContainer">
+                <img src={portrait2} alt="" className="installPortrait" />
                 <img src={installPortrait} alt="" className="installPortrait" />
             </div>
 

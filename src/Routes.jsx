@@ -5,6 +5,8 @@ import { useLocation, Switch, Route } from 'react-router-dom';
 import Shop from './components/Shop';
 import Product from './components/Product';
 import About from './components/About';
+import Press from './components/Press';
+import Contact from './components/Contact';
 
 const Routes = ({ products, addToCart }) => {
     const location = useLocation();
@@ -35,6 +37,20 @@ const Routes = ({ products, addToCart }) => {
             path: '/about',
             text: 'About',
             component: About,
+            exact: true,
+            props: {},
+        },
+        {
+            path: '/press',
+            text: 'Press',
+            component: Press,
+            exact: true,
+            props: {},
+        },
+        {
+            path: '/contact',
+            text: 'Contact',
+            component: Contact,
             exact: true,
             props: {},
         },

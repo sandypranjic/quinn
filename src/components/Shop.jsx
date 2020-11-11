@@ -30,6 +30,7 @@ const Shop = ({ props }) => {
 
     return (
         <section className="shop wrapper fadeIn">
+            <h2>shop</h2>
             <div className="products">
                 {
                     props.products.map((product) => {

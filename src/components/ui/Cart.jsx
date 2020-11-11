@@ -6,9 +6,11 @@ import close from '../../assets/close.svg';
 const Cart = ({ hideCart, showCart, shoppingCart }) => {
 
     useEffect(() => {
-        shoppingCart.lineItems.forEach((item) => {
-            console.log('VARIANT DATA HERE -------->', item.variant.image.src);
-        });
+        if (shoppingCart && shoppingCart.lineItems) {
+            shoppingCart.lineItems.forEach((item) => {
+                console.log('VARIANT DATA HERE -------->', item.variant.image.src);
+            });
+        }
     }, [shoppingCart]);
 
     useEffect(() => {
@@ -41,7 +43,7 @@ const Cart = ({ hideCart, showCart, shoppingCart }) => {
             </div>
 
             {
-                shoppingCart.lineItems.length !== 0
+                shoppingCart && shoppingCart.lineItems && shoppingCart.lineItems.length !== 0
                     ? (
                         <div className="items">
                             {
@@ -64,7 +66,7 @@ const Cart = ({ hideCart, showCart, shoppingCart }) => {
             }
 
             {
-                shoppingCart.lineItems.length !== 0
+                shoppingCart && shoppingCart.lineItems && shoppingCart.lineItems.length !== 0
                     ? (
                         <div className="proceedToCheckout">
                             <span>Subtotal: ${shoppingCart.totalPrice}</span>

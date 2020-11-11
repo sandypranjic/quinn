@@ -31,7 +31,7 @@ const Header = ({ shoppingCart, showCart, hideCart, toggleCart }) => {
                         <img src={cart} alt="Shopping Cart" />
                     </button>
                     <span className="cartCounter">
-                        {shoppingCart.lineItems.length}
+                        {shoppingCart && shoppingCart.lineItems ? shoppingCart.lineItems.length : null}
                     </span>
                 </div>
             </div>

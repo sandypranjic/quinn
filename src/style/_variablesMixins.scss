@@ -13,6 +13,12 @@
     font-style: normal;
 }
 
+@mixin accentTextItalic {
+    font-family: questa-grande, serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
 // Colours
 $text: #262626;
 $white: #ffffff;
@@ -21,3 +27,11 @@ $lightBorder: rgba(38, 38, 38, 0.1);
 $textAccent: rgba(216, 145, 74, 0.3);
 $accent2: #815D41;
 $accentBackground: rgba(188, 150, 121, .1);
+
+// 
+$deepAccent: #4c5948;
+$accent: rgba(76, 89, 72, 0.3);
+$faintAccent: rgba(76, 89, 72, 0.1);
+
+$accent2: #c3a492;
+$lightAccent: rgba(195, 164, 146, 0.2);

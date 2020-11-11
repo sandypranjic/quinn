@@ -72,7 +72,6 @@ const Product = ({ props }) => {
                             <div className="description">
                                 <h2>
                                     {currentProduct.attrs.title.value}
-                                    {!currentProduct.availableForSale ? ' - sold out' : null}
                                 </h2>
                                 <p>${currentProduct.attrs.variants[0].price} CAD</p>
                                 <p className="productDescription" dangerouslySetInnerHTML={{__html: currentProduct.descriptionHtml}}></p>
@@ -92,6 +91,7 @@ const Product = ({ props }) => {
 
                                     }
                                 </div>
+                                {!currentProduct.availableForSale ? <p className="soldOutNotification">This item is sold out.</p> : null}
                             </div>
 
                         </section>

@@ -1,12 +1,99 @@
 main {
     margin-top: 120px;
+    min-height: 60vh;
     .about {
+        max-width: 100%;
         .imageContainer {
             margin-bottom: 50px;
+            display: flex;
+            flex-wrap: nowrap;
+            img {
+                // width: 50%;
+                // flex-basis: 100%;
+                &:first-of-type {
+                    width: calc(100% / 3);
+                    margin-right: 50px;
+                }
+                &:last-of-type {
+                    width: calc(100% / 3 * 2);
+                }
+            }
         }
         .installPortrait {
+            object-fit: cover;
+        }
+    }
+    .press {
+        .pressList {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            padding-left: 0;
+        }
+        li {
+            display: block;
             width: 100%;
-            object-fit: contain;
+            margin-bottom: 10px;
+            .company {
+                @include accentTextItalic;
+                font-size: 2.5rem;
+            }
+            a {
+                color: $text;
+                transition: all 0.3s ease;
+                span {
+                    transition: all 0.3s ease;
+                }
+                &:hover span {
+                    color: $accent;
+                }
+            }
+        }
+    }
+    .contact {
+        p {
+            margin-bottom: 50px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 1.5rem;
+            label {
+                width: calc(50% - 12.5px);
+                margin-bottom: 10px;
+                &:first-of-type {
+                    margin-right: 25px;
+                }
+                input, textarea {
+                    display: block;
+                    width: 100%;
+                    margin-top: 10px;
+                    padding: 10px;
+                    background-color: $faintAccent;
+                    border: 0;
+                    resize: none;
+                }
+            }
+            .message {
+                width: 100%;
+                textarea {
+                    height: 200px;
+                }
+            }
+            button {
+                @include accentText;
+                font-size: 2rem;
+                cursor: pointer;
+                margin-left: 100%;
+                transform: translateX(-100%);
+                padding: 10px 30px;
+                background-color: $deepAccent;
+                color: $accent2;
+                transition: all 0.3s ease;
+                &:hover {
+                    color: #f0d6c7;
+                }
+            }
         }
     }
 }

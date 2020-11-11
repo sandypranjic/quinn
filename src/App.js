@@ -119,9 +119,8 @@ const App = () => {
             </>
           )
           : (
-            <form className="password" onSubmit={(event) => { event.preventDefault(); setUserEntry(inputText); }}>
-              <input onChange={(event) => { setInputText(event.target.value); }} type="text" placeholder="password"></input>
-              <button type="submit">Submit</button>
+            <form className="password">
+              <input onChange={(event) => { setUserEntry(event.target.value); }} type="text" placeholder="password"></input>
             </form>
           )
       }

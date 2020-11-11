@@ -2,6 +2,8 @@
 .shop {
     margin-top: 50px;
     .soldOut {
+        @include accentTextItalic;
+        font-size: 1.7rem;
         position: relative;
         display: inline-block;
         text-transform: lowercase;
@@ -10,7 +12,7 @@
             display: block;
             width: 100%;
             height: 5px;
-            background-color: $textAccent;
+            background-color: $lightAccent;
             position: absolute;
             bottom: 5px;
             left: 0;
@@ -103,7 +105,7 @@
                 left: 0;
                 height: 10px;
                 width: 0;
-                background-color: $textAccent;
+                background-color: $lightAccent;
                 transition: all 0.3s ease;
                 z-index: -1;
             }
@@ -138,7 +140,7 @@
             justify-content: center;
             align-items: center;
             &:hover {
-                background-color: $textAccent;
+                background-color: $lightAccent;
             }
             img {
                 width: 18px;
@@ -151,6 +153,10 @@
     .productDescription {
         padding-top: 25px;
         line-height: 1.5;
+    }
+    .soldOutNotification {
+        @include accentTextItalic;
+        font-size: 2rem;
     }
 }
 
