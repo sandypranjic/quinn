@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from "react-router-dom";
 
+// Animations
+import ScrollAnimation from 'react-animate-on-scroll';
+import "animate.css/animate.min.css";
+
 // Images
 import add from '../assets/add.svg';
 
@@ -30,13 +34,13 @@ const Shop = ({ props }) => {
 
     return (
         <section className="shop wrapper fadeIn">
-            <h2>shop</h2>
+            <h2>Shop</h2>
             <div className="products">
                 {
                     props.products.map((product) => {
                         if (product.attrs.images[0] && product.attrs.images[0].src) {
                             return (
-                                <div key={Math.random()} className="productContainer">
+                                <ScrollAnimation animateIn="fadeIn" duration={3} offset={20} delay={2} key={Math.random()} className="productContainer">
                                     <div className="productPreview">
                                         <Link to={`/products/${product.id}`}>
                                             <img className="productImage" src={product.attrs.images[0].src} alt="" />
@@ -63,7 +67,7 @@ const Shop = ({ props }) => {
                                             <p className="price">${product.attrs.variants[0].price} </p>
                                         </Link>
                                     </div>
-                                </div>
+                                </ScrollAnimation>
                             )
                         }
                     })

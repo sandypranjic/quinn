@@ -96,4 +96,30 @@ main {
             }
         }
     }
+    .commissions {
+        p {
+            margin-bottom: 50px;
+        }
+        .columnContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            .column {
+                width: calc(100% / 3);
+                display: flex;
+                flex-direction: column;
+                &:first-of-type {
+                    margin-right: 10px;
+                }
+                &:last-of-type {
+                    margin-left: 10px;
+                }
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
 }

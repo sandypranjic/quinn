@@ -22,7 +22,7 @@ const Press = () => {
             url: 'https://knix.com/blogs/knix-blog/drawing-self-love-with-quinn-rockliff',
         },
         {
-            company: 'NUVO Magazie',
+            company: 'NUVO Magazine',
             date: 'August 2019',
             url: 'https://nuvomagazine.com/daily-edit/interdisciplinary-feminist-artist-quinn-rockliff',
         },
