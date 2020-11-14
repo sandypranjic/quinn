@@ -7,6 +7,7 @@
     justify-content: space-between;
     h2 {
         width: 100%;
+        text-transform: capitalize;
     }
     .soldOut {
         @include accentTextItalic;

@@ -71,7 +71,9 @@ const Shop = ({ props }) => {
         <>
             <section className="shop wrapper fadeIn">
             <div className="filter">
-                <h3>Filter by:</h3>
+                <h3>
+                    Filter by:
+                </h3>
                 <ul className="filterOptions">
                     <li>
                         <button onClick={() => { if (productFilter !== '') { setProductFilter(''); } }} className={productFilter === '' ? 'selectedFilter' : null} type="button">All Products</button>
@@ -85,7 +87,14 @@ const Shop = ({ props }) => {
                     }
                 </ul>
             </div>
-                <h2>Shop</h2>
+                <h2>
+                    Shop
+                    {
+                        productFilter === ''
+                        ? ' > All'
+                        : ` > ${productFilter}s`
+                    }
+                </h2>
                 <div className="products column">
                     {
                         filteredList.map((product, index) => {
