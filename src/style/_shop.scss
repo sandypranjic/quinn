@@ -1,6 +1,13 @@
 // Shop overview page
 .shop {
+    position: relative;
     margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    h2 {
+        width: 100%;
+    }
     .soldOut {
         @include accentTextItalic;
         font-size: 1.7rem;
@@ -23,12 +30,13 @@
         color: rgba(38, 38, 38, 0.5);
     }
     .products {
+        width: calc(100% / 2 - 50px);
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        // flex-wrap: wrap;
         .productContainer {
-            width: calc(100% / 3 - 50px);
+            width: 100%;
             margin-bottom: 50px;
         }
         .productPreview {
@@ -84,6 +92,67 @@
     }
 }
 
+.filter {
+    margin-top: 5px;
+    position: fixed;
+    transform: translateX(calc(-100% - 35px));
+    h3 {
+        letter-spacing: 1px;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        text-align: right;
+        text-transform: lowercase;
+    }
+    .filterOptions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+        text-align: right;
+        button {
+            font-size: 1.8rem;
+            @include accentTextItalic;
+            position: relative;
+            text-transform: lowercase;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            &::after {
+                position: absolute;
+                content: '';
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 10px;
+                background-color: $lightAccent;
+                z-index: -1;
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            &:hover::after {
+                opacity: 1;
+            }
+        }
+    }
+    button.selectedFilter {
+        position: relative;
+        transition: all 0.3s ease;
+        &::after {
+            position: absolute;
+            content: '';
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(195, 164, 146, 0.7);
+            opacity: 1;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
 // Once a user clicks on a product, this is the product details page
 .productDetails {
     margin-top: 50px;
@@ -115,7 +184,7 @@
         }
     }
     .imagesContainer {
-        width: 40%;
+        width: 60%;
         img {
             object-fit: contain;
             width: 100%;
@@ -123,7 +192,7 @@
         }
     }
     .description {
-        width: calc(60% - 50px);
+        width: calc(40% - 50px);
     }
     .addToCart {
         margin-top: 25px;

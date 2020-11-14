@@ -20,7 +20,6 @@ const Header = ({ shoppingCart, showCart, hideCart, toggleCart }) => {
                 <nav className="mainNav">
                     <Link to="/">Shop</Link>
                     <Link to="/commissions">Commissions</Link>
-                    <Link to="/work">Work</Link>
                     <Link to="/press">Press</Link>
                     <Link to="/about">About</Link>
                     <Link to="/contact">Contact</Link>

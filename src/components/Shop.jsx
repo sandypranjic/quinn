@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from "react-router-dom";
+import ProductInList from './ProductInList';
 
 // Animations
 import ScrollAnimation from 'react-animate-on-scroll';
@@ -12,6 +13,10 @@ import add from '../assets/add.svg';
 import scrollToTop from '../utilities/scrollToTop';
 
 const Shop = ({ props }) => {
+    const [totalAmt, setTotalAmt] = useState(0);
+    const [productFilter, setProductFilter] = useState('');
+
+    const [filteredList, setFilteredList] = useState([]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -32,48 +37,84 @@ const Shop = ({ props }) => {
         console.log(id);
     };
 
+    useEffect(() => {
+        if (props && props.products) {
+            setFilteredList(props.products);
+        }
+    }, [props]);
+
+    useEffect(() => {
+        if (filteredList) {
+            if (productFilter !== '') {
+                const updated = [];
+                props.products.forEach((item) => {
+                    if (productFilter === item.productType) {
+                        updated.push(item);
+                    }
+                });
+                setFilteredList([...updated]);
+            } else {
+                setFilteredList(props.products);
+            }
+        }
+    }, [productFilter]);
+
+    useEffect(() => {
+        if (filteredList.length !== 0) {
+            setTotalAmt(filteredList.length);
+        }
+    }, [filteredList]);
+
+    const productTypes = ['print', 'tote', 'top', 'card', 'gift card'];
+
     return (
-        <section className="shop wrapper fadeIn">
-            <h2>Shop</h2>
-            <div className="products">
-                {
-                    props.products.map((product) => {
-                        if (product.attrs.images[0] && product.attrs.images[0].src) {
-                            return (
-                                <ScrollAnimation animateIn="fadeIn" duration={3} offset={20} delay={2} key={Math.random()} className="productContainer">
-                                    <div className="productPreview">
-                                        <Link to={`/products/${product.id}`}>
-                                            <img className="productImage" src={product.attrs.images[0].src} alt="" />
-                                        </Link>
-                                        {/* <div className="addToCart">
-                                            <button onClick={() => { quickAdd(product.variants[0].id); }}>
-                                                <span>Add to Cart</span>
-                                                <img src={add} alt="Add to cart" />
-                                            </button>
-                                        </div> */}
-                                    </div>
-                                    <div className="productInfo">
-                                        <Link to={`/products/${product.id}`}>
-                                            <p className={!product.availableForSale ? 'notAvailable' : null}>
-                                                {product.attrs.title.value}
-                                            </p>
-                                            {
-                                                !product.availableForSale
-                                                    ? <p className="soldOut">Sold Out</p>
-                                                    : null
-                                            }
-                                        </Link>
-                                        <Link to={`/products/${product.id}`}>
-                                            <p className="price">${product.attrs.variants[0].price} </p>
-                                        </Link>
-                                    </div>
-                                </ScrollAnimation>
-                            )
-                        }
-                    })
-                }
+        <>
+            <section className="shop wrapper fadeIn">
+            <div className="filter">
+                <h3>Filter by:</h3>
+                <ul className="filterOptions">
+                    <li>
+                        <button onClick={() => { if (productFilter !== '') { setProductFilter(''); } }} className={productFilter === '' ? 'selectedFilter' : null} type="button">All Products</button>
+                    </li>
+                    {
+                        productTypes.map((filter) => (
+                            <li>
+                                <button onClick={() => { if (productFilter !== filter) { setProductFilter(filter); } }} className={productFilter === filter ? 'selectedFilter' : null} type="button">{filter}s</button>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
-        </section>
+                <h2>Shop</h2>
+                <div className="products column">
+                    {
+                        filteredList.map((product, index) => {
+                            if (product.attrs.images[0] && product.attrs.images[0].src && (index < (totalAmt / 2) || totalAmt === 1)) {
+                                if (productFilter === '' || (productFilter === product.productType)) {
+                                    return (
+                                        <ProductInList product={product} />
+                                    )
+                                }
+                            }
+                        })
+                    }
+                </div>
+
+                <div className="products column">
+                    {
+                        filteredList.map((product, index) => {
+                            if (product.attrs.images[0] && product.attrs.images[0].src && index >= (totalAmt / 2)) {
+                                if (productFilter === '' || (productFilter === product.productType)) {
+                                    return (
+                                        <ProductInList product={product} />
+                                    )
+                                }
+                            }
+                        })
+                    }
+                </div>
+            </section>
+        </>
     );
 };
 

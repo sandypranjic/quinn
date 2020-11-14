@@ -8,7 +8,6 @@ import About from './components/About';
 import Press from './components/Press';
 import Contact from './components/Contact';
 import Commissions from './components/Commissions';
-import Work from './components/Work';
 
 const Routes = ({ products, addToCart }) => {
     const location = useLocation();
@@ -60,13 +59,6 @@ const Routes = ({ products, addToCart }) => {
             path: '/commissions',
             text: 'Commissions',
             component: Commissions,
-            exact: true,
-            props: {},
-        },
-        {
-            path: '/work',
-            text: 'Work',
-            component: Work,
             exact: true,
             props: {},
         },
