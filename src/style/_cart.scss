@@ -25,6 +25,9 @@
         object-fit: contain;
         width: 100%;
     }
+    h2 {
+        margin-bottom: 0;
+    }
 }
 .items {
     overflow-y: scroll;
@@ -41,10 +44,14 @@
         width: 50%;
         object-fit: contain;
         // margin-bottom: 10px;
-        border: 1px solid $accent2;
+        border: 5px solid $accent2;
     }
     h3 {
         margin-bottom: 10px;
+        @include accentText;
+        font-size: 2rem;
+        text-align: center;
+        color: $deepAccent;
     }
 }
 .proceedToCheckout {
@@ -73,4 +80,35 @@
             width: 70%;
         }
     }
+}
+
+.controlQuantity {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    .increaseDecrease {
+        border: 0;
+        cursor: pointer;
+        img {
+            object-fit: contain;
+            width: 25px;
+            border: 0;
+        }
+    }
+    .quantityInCart {
+        display: block;
+        margin: 0 10px;
+        @include accentText;
+        font-size: 2.3rem;
+        line-height: 0.8;
+        color: $deepAccent;
+    }
+}
+.removeItem {
+    margin-top: 10px;
+    text-transform: lowercase;
+    // background-color: $accent2;
+    cursor: pointer;
+    color: $deepAccent;
+    padding: 2px;
 }

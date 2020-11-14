@@ -12,6 +12,7 @@ const Product = ({ props }) => {
     const { productId } = useParams();
     const [currentProduct, setCurrentProduct] = useState({});
     const [quantity, setQuantity] = useState(1);
+    const [selectedImg, setSelectedImg] = useState(0);
 
     useEffect(() => {
         setTimeout(() => {
@@ -56,6 +57,12 @@ const Product = ({ props }) => {
         }, 3000);
     };
 
+    useEffect(() => {
+        if (currentProduct.attrs) {
+            console.log(currentProduct.attrs.images);
+        }
+    }, [currentProduct]);
+
     return (
         <>
             {
@@ -66,7 +73,22 @@ const Product = ({ props }) => {
                                 <Link to="/">Back to All Products</Link>
                             </div>
                             <div className="imagesContainer">
-                                <img src={currentProduct.attrs.images[0].src} alt="" />
+                                <div className="selectedImage">
+                                    {
+                                        currentProduct.attrs.images.map((img, index) => {
+                                            if (index === selectedImg) {
+                                                return <img src={img.src} alt={img.altText} />;
+                                            }
+                                        })
+                                    }
+                                </div>
+                                <div className="imageThumbnails">
+                                    {
+                                        currentProduct.attrs.images.map((thumbnail, index) => (
+                                            <img className={index === selectedImg ? 'selectedThumbnail' : null} onClick={() => { setSelectedImg(index); }} src={thumbnail.src} alt="" />
+                                        ))
+                                    }
+                                </div>
                             </div>
                             
                             <div className="description">

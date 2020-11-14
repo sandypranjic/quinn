@@ -6,9 +6,9 @@ import Cart from './ui/Cart';
 import cart from '../assets/cart.svg';
 
 const Header = ({ shoppingCart, showCart, hideCart, toggleCart }) => {
-    useEffect(() => {
-        console.log(shoppingCart);
-    }, [shoppingCart]);
+    // useEffect(() => {
+    //     console.log(shoppingCart);
+    // }, [shoppingCart]);
 
     return (
         <header className="fadeIn">

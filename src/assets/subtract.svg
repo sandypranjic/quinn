@@ -6,6 +6,6 @@
 	.st0{fill:#C3A492;}
 	.st1{fill:none;}
 </style>
-<polygon class="st0" points="17,15 17,8 15,8 15,15 8,15 8,17 15,17 15,24 17,24 17,17 24,17 24,15 "/>
-<rect class="st1" width="32" height="32"/>
+<rect x="8" y="15" class="st0" width="16" height="2"/>
+<rect id="_x3C_Transparent_Rectangle_x3E_" class="st1" width="32" height="32"/>
 </svg>

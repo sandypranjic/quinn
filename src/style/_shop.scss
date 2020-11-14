@@ -93,6 +93,7 @@
     }
 }
 
+// Filter sidebar on homepage
 .filter {
     margin-top: 5px;
     position: fixed;
@@ -186,10 +187,29 @@
     }
     .imagesContainer {
         width: 60%;
-        img {
-            object-fit: contain;
-            width: 100%;
-            border: 1px solid $lightBorder;
+        .selectedImage {
+            img {
+                object-fit: contain;
+                width: 100%;
+                border: 1px solid $lightBorder;
+                animation: 0.5s ease-in 0s 1 forwards textReturn;
+            }
+        }
+        .imageThumbnails {
+            margin-top: 25px;
+            img {
+                cursor: pointer;
+                object-fit: cover;
+                width: 100px;
+                height: 100px;
+                object-position: center;
+                margin-right: 10px;
+                border: 5px solid transparent;
+            }
+            .selectedThumbnail {
+                border: 5px solid rgba(195, 164, 146, 0.7);
+                transition: all 0.3s ease;
+            }
         }
     }
     .description {
@@ -198,7 +218,6 @@
     .addToCart {
         margin-top: 25px;
         button {
-            // padding: 5px;
             min-width: 100px;
             height: 28px;
             margin: 0;

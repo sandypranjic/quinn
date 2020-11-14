@@ -19,7 +19,11 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [checkoutId, setCheckoutId] = useState('');
   const [showCart, setShowCart] = useState(false);
-  const [newItem, setNewItem] = useState({});
+
+  // Updating the cart:
+  const [newItem, setNewItem] = useState({ id: '', quantity: '' });
+  const [itemToRemove, setItemToRemove] = useState('');
+  const [updateItem, setUpdateItem] = useState([{ id: '', quantity: '' }]);
 
   const client = Client.buildClient({
     domain: 'quinnrockliff.myshopify.com/',
@@ -64,6 +68,19 @@ const App = () => {
     setNewItem({ variantId: id, quantity: amount });
   };
 
+  const updateQuantity = (id, amount) => {
+    console.log(`id: ${id} / amount: ${amount}`);
+    const update = [];
+    update.push({ id: id, quantity: amount });
+    setUpdateItem(update);
+  };
+
+  // const deleteItem = (id) => {
+  //   const update = [];
+  //   update.push({ id: id, quantity: 0 });
+  //   setUpdateItem(update);
+  // }
+
   useEffect(() => {
     if (newItem.variantId && newItem.quantity) {
       client.checkout.addLineItems(checkoutId, newItem).then((checkout) => {
@@ -72,6 +89,27 @@ const App = () => {
       });
     }
   }, [newItem]);
+
+  // useEffect(() => {
+  //   if (checkoutId && shoppingCart.length !== 0 && updateItem[0].id !== '' && updateItem[0].quantity !== '') {
+  //     client.checkout.removeLineItems(checkoutId, itemToRemove).then((checkout) => {
+  //       // Do something with the updated checkout
+  //       console.log(checkout.lineItems); // Checkout with line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' removed
+  //     });
+  //   }
+  // }, [itemToRemove]);
+
+  useEffect(() => {
+    if (checkoutId && shoppingCart.length !== 0 && updateItem[0].id !== '' && updateItem[0].quantity !== '') {
+      console.log('THIS FUNCTION CALLED TO UPDATE ITEM');
+      // Update the line item on the checkout (change the quantity or variant)
+      client.checkout.updateLineItems(checkoutId, updateItem).then((checkout) => {
+        // Do something with the updated checkout
+        console.log(checkout.lineItems); // Quantity of line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' updated to 2
+        setShoppingCart(checkout);
+      });
+    }
+  }, [updateItem]);
 
   useEffect(() => {
     console.log('SHOPPING CART UPDATED', shoppingCart);
@@ -115,6 +153,7 @@ const App = () => {
                 showCart={showCart}
                 shoppingCart={shoppingCart}
                 toggleCart={toggleCart}
+                updateQuantity={updateQuantity}
               />
             </>
           )

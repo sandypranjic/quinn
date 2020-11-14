@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
+import ItemInCart from './ItemInCart';
 
 // Images
 import close from '../../assets/close.svg';
 
-const Cart = ({ hideCart, showCart, shoppingCart }) => {
+const Cart = ({ hideCart, showCart, shoppingCart, updateQuantity }) => {
 
-    useEffect(() => {
-        if (shoppingCart && shoppingCart.lineItems) {
-            shoppingCart.lineItems.forEach((item) => {
-                console.log('VARIANT DATA HERE -------->', item.variant.image.src);
-            });
-        }
-    }, [shoppingCart]);
+    // useEffect(() => {
+    //     if (shoppingCart && shoppingCart.lineItems) {
+    //         shoppingCart.lineItems.forEach((item) => {
+    //             console.log('VARIANT DATA HERE -------->', item.variant.image.src);
+    //         });
+    //     }
+    // }, [shoppingCart]);
 
     useEffect(() => {
         const cart = document.getElementById('cart');
@@ -25,13 +26,6 @@ const Cart = ({ hideCart, showCart, shoppingCart }) => {
             global.style.opacity = '1';
         }
     }, [showCart]);
-
-    const pricesTimesQuantity = (price, quantity) => {
-        const total = parseInt(price, 10) * quantity;
-        const formatted = total.toFixed(2);
-        const string = `$${formatted}`;
-        return string;
-    };
 
     return (
         <div id="cart" className={showCart ? 'cart showCart' : 'cart'}>
@@ -48,12 +42,10 @@ const Cart = ({ hideCart, showCart, shoppingCart }) => {
                         <div className="items">
                             {
                                 shoppingCart.lineItems.map((item) => (
-                                    <div key={item.id} className="itemInCart">
-                                        <h3>{item.quantity} x {item.title} - 
-                                        {pricesTimesQuantity(item.attrs.variant.price, item.quantity)}
-                                        </h3>
-                                        <img src={item.variant.image.src} alt="" />
-                                    </div>
+                                    <ItemInCart 
+                                        item={item} 
+                                        updateQuantity={updateQuantity} 
+                                    />
                                 ))
                             }
                         </div>

@@ -51,7 +51,24 @@ main {
         }
     }
     .contact {
-        p {
+        .buttonContainer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            max-width: 100%;
+            min-width: 100%;
+            .emailSuccessContainer {
+                min-width: 60%;
+                .emailSuccess {
+                    @include accentText;
+                    font-size: 2rem;
+                }
+            }
+            div {
+                width: 40%;
+            }
+        }
+        p:not(.emailSuccess) {
             margin-bottom: 50px;
         }
         form {
@@ -82,14 +99,15 @@ main {
             }
             button {
                 @include accentText;
-                font-size: 2rem;
+                font-size: 2.9rem;
                 cursor: pointer;
                 margin-left: 100%;
                 transform: translateX(-100%);
-                padding: 10px 30px;
+                padding: 5px 15px;
                 background-color: $deepAccent;
                 color: $accent2;
                 transition: all 0.3s ease;
+                text-transform: lowercase;
                 &:hover {
                     color: #f0d6c7;
                 }
