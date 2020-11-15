@@ -13,6 +13,8 @@ const Product = ({ props }) => {
     const [currentProduct, setCurrentProduct] = useState({});
     const [quantity, setQuantity] = useState(1);
     const [selectedImg, setSelectedImg] = useState(0);
+    const [selectedVariant, setSelectedVariant] = useState();
+    const [showVariantError, setShowVariantError] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -29,32 +31,37 @@ const Product = ({ props }) => {
     }, [props])
 
     const addToCart = (id) => {
-        props.addToCart(id, quantity);
+        console.log('made it here');
+        if (selectedVariant !== '') {
+            setShowVariantError(false);
+            props.addToCart(id, quantity);
+    
+            const text = document.getElementById('text');
+            text.classList.add('buttonFadeOut');
+    
+            const confirmation = document.getElementById('confirmation');
+    
+            setTimeout(() => {
+                text.style.display = 'none';
+                confirmation.style.display = 'block';
+            }, 300)
+    
+            setTimeout(() => {
+                confirmation.classList.add('buttonFadeIn');
+            }, 400);
+    
+            setTimeout(() => {
+                confirmation.style.display = 'none';
+                confirmation.classList.remove('buttonFadeIn');
+                text.classList.remove('buttonFadeOut');
+                text.classList.add('textReturn');
+            }, 2500);
+    
+            setTimeout(() => {
+                text.style.display = 'block';
+            }, 3000);
 
-        const text = document.getElementById('text');
-        text.classList.add('buttonFadeOut');
-
-        const confirmation = document.getElementById('confirmation');
-
-        setTimeout(() => {
-            text.style.display = 'none';
-            confirmation.style.display = 'block';
-        }, 300)
-
-        setTimeout(() => {
-            confirmation.classList.add('buttonFadeIn');
-        }, 400);
-
-        setTimeout(() => {
-            confirmation.style.display = 'none';
-            confirmation.classList.remove('buttonFadeIn');
-            text.classList.remove('buttonFadeOut');
-            text.classList.add('textReturn');
-        }, 2500);
-
-        setTimeout(() => {
-            text.style.display = 'block';
-        }, 3000);
+        }
     };
 
     useEffect(() => {
@@ -62,6 +69,25 @@ const Product = ({ props }) => {
             console.log(currentProduct.attrs.images);
         }
     }, [currentProduct]);
+
+    useEffect(() => {
+        if (currentProduct && currentProduct.variants) {
+            if (currentProduct.variants.length === 1) {
+                setSelectedVariant(0);
+            } else if (currentProduct.variants.length > 1) {
+                setSelectedVariant('');
+            }
+        }
+    }, [currentProduct]);
+
+    useEffect(() => {
+        console.log('SELECTED VARIANT:', selectedVariant);
+        setShowVariantError(false);
+    }, [selectedVariant]);
+
+    useEffect(() => {
+        console.log('show variant error? ', showVariantError);
+    }, [showVariantError]);
 
     return (
         <>
@@ -77,7 +103,7 @@ const Product = ({ props }) => {
                                     {
                                         currentProduct.attrs.images.map((img, index) => {
                                             if (index === selectedImg) {
-                                                return <img src={img.src} alt={img.altText} />;
+                                                return <img key={img.src} src={img.src} alt={img.altText} />;
                                             }
                                         })
                                     }
@@ -85,7 +111,7 @@ const Product = ({ props }) => {
                                 <div className="imageThumbnails">
                                     {
                                         currentProduct.attrs.images.map((thumbnail, index) => (
-                                            <img className={index === selectedImg ? 'selectedThumbnail' : null} onClick={() => { setSelectedImg(index); }} src={thumbnail.src} alt="" />
+                                            <img key={thumbnail.src} className={index === selectedImg ? 'selectedThumbnail' : null} onClick={() => { setSelectedImg(index); }} src={thumbnail.src} alt="" />
                                         ))
                                     }
                                 </div>
@@ -97,12 +123,35 @@ const Product = ({ props }) => {
                                 </h2>
                                 <p>${currentProduct.attrs.variants[0].price} CAD</p>
                                 <p className="productDescription" dangerouslySetInnerHTML={{__html: currentProduct.descriptionHtml}}></p>
+
+                                {
+                                    currentProduct.availableForSale && currentProduct.variants.length > 1
+                                        ? (
+                                            <label className="variant" htmlFor="variant">
+                                                {
+                                                    currentProduct.productType === 'top'
+                                                        ? 'Size and colour:'
+                                                        : 'Options:'
+                                                }
+                                                <select id="variant" name="variant" onChange={(event) => { setSelectedVariant(event.target.value); setShowVariantError(false); }}>
+                                                    <option>Please select</option>
+                                                    {
+                                                        currentProduct.variants.map((item, index) => {
+                                                            return <option value={index} key={`${item.title}-${item.index}`}>{item.title}</option>
+                                                        })
+                                                    }
+                                                </select>
+                                            </label>
+                                        )
+                                        : null
+                                }
+
                                 <div className="addToCart">
                                     {
                                         currentProduct.availableForSale
                                             ? (
                                                 <>
-                                                    <button id="addToCartButton" onClick={() => { addToCart(currentProduct.variants[0].id) }} type="button">
+                                                    <button id="addToCartButton" onClick={() => { if (selectedVariant !== undefined && selectedVariant !== '') { addToCart(currentProduct.variants[selectedVariant].id) } else { setShowVariantError(true); } }} type="button" className={selectedVariant === '' ? 'inactiveButton' : null}>
                                                         <span id="text">Add to Cart</span>
                                                         <img id="confirmation" src={checkmark} alt="" />
 
@@ -111,6 +160,16 @@ const Product = ({ props }) => {
                                             )
                                             : null
 
+                                    }
+                                    {
+                                        showVariantError
+                                            ? <p className="fadeIn variantError">Please select a
+                                                {
+                                                currentProduct.productType === 'top' ? ' size and colour' : 'n option'
+                                                }
+                                                .
+                                                </p>
+                                            : null
                                     }
                                 </div>
                                 {!currentProduct.availableForSale ? <p className="soldOutNotification">This item is sold out.</p> : null}

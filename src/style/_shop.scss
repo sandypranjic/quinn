@@ -26,6 +26,34 @@
             left: 0;
         }
     }
+    .promoBanner {
+        width: 100%;
+        padding: 25px;
+        background-color: $accent2;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        border: 5px solid #ead6cc;
+        @include mobile {
+            margin-bottom: 25px;
+        }
+        span {
+            display: block;
+            font-size: 5rem;
+            color: #f4e1d7;
+            line-height: 0.9;
+            @include mobile {
+                font-size: 3.5rem;
+            }
+        }
+        p {
+            @include accentTextItalic;
+            font-size: 2.3rem;
+            @include mobile {
+                font-size: 1.7rem;
+            }
+        }
+    }
     .notAvailable {
         text-decoration: line-through;
         color: rgba(38, 38, 38, 0.5);
@@ -245,6 +273,15 @@
             width: 100%;
         }
     }
+    .variant {
+        margin-bottom: 25px;
+        select {
+            margin-top: 10px;
+            display: block;
+            border: 1px solid $accent2;
+            padding: 10px;
+        }
+    }
     .addToCart {
         margin-top: 25px;
         button {
@@ -268,10 +305,21 @@
                 opacity: 0;
             }
         }
+        .inactiveButton {
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
     .productDescription {
         padding-top: 25px;
         line-height: 1.5;
+        margin-bottom: 25px;
+    }
+    .variantError {
+        margin-top: 10px;
+        font-size: 1.8rem;
+        @include accentTextItalic;
     }
     .soldOutNotification {
         @include accentTextItalic;

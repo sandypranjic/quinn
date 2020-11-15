@@ -56,9 +56,14 @@ const ItemInCart = ({ item, updateQuantity }) => {
 
     return (
         <div key={item.id} className="itemInCart">
-            <h3>{item.quantity} x {item.title} - 
-            {pricesTimesQuantity(item.attrs.variant.price, item.quantity)}
+            <h3>{item.quantity} x {item.title}
+            {
+                item.variant.title !== 'Default Title'
+                ? ` - ${item.variant.title}`
+                : null
+            }
             </h3>
+            <p className="price">{pricesTimesQuantity(item.attrs.variant.price, item.quantity)}</p>
             <img src={item.variant.image.src} alt="" />
             <div className="controlQuantity">
                 <button className="increaseDecrease" onClick={decreaseQuantity} type="button">

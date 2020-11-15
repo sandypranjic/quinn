@@ -126,7 +126,7 @@ const Shop = ({ props }) => {
                     </li>
                     {
                         productTypes.map((filter) => (
-                            <li>
+                            <li key={filter}>
                                 <button onClick={() => { if (productFilter !== filter) { setProductFilter(filter); } }} className={productFilter === filter ? 'selectedFilter' : null} type="button">
                                 {filter}
                                 {filter !== 'stationary' ? 's' : null}
@@ -136,6 +136,11 @@ const Shop = ({ props }) => {
                     }
                 </ul>
             </div>
+                <div className="promoBanner">
+                    <div>
+                        <p><span>Free shipping</span> on orders over $150 in Canada!</p>
+                    </div>
+                </div>
                 <div className="products column">
                     {
                         filteredList.map((product, index) => {
