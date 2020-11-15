@@ -11,6 +11,7 @@ main {
                 justify-content: center;
             }
             img {
+                max-height: 60vh;
                 &:first-of-type {
                     width: calc(100% / 3);
                     margin-right: 50px;

@@ -41,6 +41,7 @@
             @include accentTextItalic;
             color: #4f382d;
             font-size: 2.3rem;
+            text-transform: lowercase;
             @include mobile {
                 font-size: 1.7rem;
             }
