@@ -140,39 +140,27 @@ const App = () => {
 
   return (
     <>
-      {
-        userEntry === pw
-          ? (
-            <>
-              <div className="global" id="global">
-                <Header
-                  shoppingCart={shoppingCart}
-                  showCart={showCart}
-                  hideCart={hideCart}
-                  toggleCart={toggleCart}
-                  showMobileNav={showMobileNav}
-                />
-                <main id="main">
-                  <Routes products={products} addToCart={addToCart} />
-                </main>
-                <Footer />
-              </div>
-              <Cart
-                hideCart={hideCart}
-                showCart={showCart}
-                shoppingCart={shoppingCart}
-                toggleCart={toggleCart}
-                updateQuantity={updateQuantity}
-              />
-              <MobileNav showNav={showNav} showMobileNav={showMobileNav} />
-            </>
-          )
-          : (
-            <form className="password">
-              <input onChange={(event) => { setUserEntry(event.target.value); }} type="text" placeholder="password"></input>
-            </form>
-          )
-      }
+      <div className="global" id="global">
+        <Header
+          shoppingCart={shoppingCart}
+          showCart={showCart}
+          hideCart={hideCart}
+          toggleCart={toggleCart}
+          showMobileNav={showMobileNav}
+        />
+        <main id="main">
+          <Routes products={products} addToCart={addToCart} />
+        </main>
+        <Footer />
+      </div>
+      <Cart
+        hideCart={hideCart}
+        showCart={showCart}
+        shoppingCart={shoppingCart}
+        toggleCart={toggleCart}
+        updateQuantity={updateQuantity}
+      />
+      <MobileNav showNav={showNav} showMobileNav={showMobileNav} />
     </>
   );
 }

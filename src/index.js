@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename="/quinn/"><App /></Router>
+    <Router><App /></Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

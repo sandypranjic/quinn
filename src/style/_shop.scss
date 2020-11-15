@@ -28,8 +28,8 @@
     }
     .promoBanner {
         width: 100%;
-        padding: 25px;
-        background-color: $accent2;
+        padding: 10px;
+        background-color: $lightAccent;
         margin-bottom: 50px;
         display: flex;
         justify-content: center;
@@ -37,17 +37,9 @@
         @include mobile {
             margin-bottom: 25px;
         }
-        span {
-            display: block;
-            font-size: 5rem;
-            color: #f4e1d7;
-            line-height: 0.9;
-            @include mobile {
-                font-size: 3.5rem;
-            }
-        }
         p {
             @include accentTextItalic;
+            color: #4f382d;
             font-size: 2.3rem;
             @include mobile {
                 font-size: 1.7rem;

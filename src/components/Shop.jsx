@@ -138,7 +138,7 @@ const Shop = ({ props }) => {
             </div>
                 <div className="promoBanner">
                     <div>
-                        <p><span>Free shipping</span> on orders over $150 in Canada!</p>
+                        <p>Free shipping on orders over $150 in Canada!</p>
                     </div>
                 </div>
                 <div className="products column">
