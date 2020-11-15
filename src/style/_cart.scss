@@ -32,6 +32,9 @@
 .items {
     overflow-y: scroll;
     height: calc(100vh - 28px - 21px - 96px);
+    @include mobile {
+        height: calc(100vh - 28px - 21px - 96px - 50px);
+    }
 }
 .itemInCart {
     width: 100%;
@@ -60,6 +63,10 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    @include mobile {
+        padding: 50px 25px;
+    }
     a {
         color: $text;
         @include accentText;
