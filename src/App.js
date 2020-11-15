@@ -8,6 +8,7 @@ import Client from 'shopify-buy';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Cart from './components/ui/Cart';
+import MobileNav from './components/MobileNav';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
@@ -24,6 +25,9 @@ const App = () => {
   const [newItem, setNewItem] = useState({ id: '', quantity: '' });
   const [itemToRemove, setItemToRemove] = useState('');
   const [updateItem, setUpdateItem] = useState([{ id: '', quantity: '' }]);
+
+  // Mobile Nav
+  const [showNav, setShowNav] = useState(false);
 
   const client = Client.buildClient({
     domain: 'quinnrockliff.myshopify.com/',
@@ -130,6 +134,10 @@ const App = () => {
 
   // };
 
+  const showMobileNav = () => {
+    setShowNav(!showNav);
+  };
+
   return (
     <>
       {
@@ -142,6 +150,7 @@ const App = () => {
                   showCart={showCart}
                   hideCart={hideCart}
                   toggleCart={toggleCart}
+                  showMobileNav={showMobileNav}
                 />
                 <main id="main">
                   <Routes products={products} addToCart={addToCart} />
@@ -155,6 +164,7 @@ const App = () => {
                 toggleCart={toggleCart}
                 updateQuantity={updateQuantity}
               />
+              <MobileNav showNav={showNav} showMobileNav={showMobileNav} />
             </>
           )
           : (

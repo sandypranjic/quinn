@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import Cart from './ui/Cart';
+import menu from '../assets/menu.svg';
 
 // Images
 import cart from '../assets/cart.svg';
 
-const Header = ({ shoppingCart, showCart, hideCart, toggleCart }) => {
-    // useEffect(() => {
-    //     console.log(shoppingCart);
-    // }, [shoppingCart]);
+const Header = ({ shoppingCart, showCart, hideCart, toggleCart, showMobileNav }) => {
 
     return (
         <header className="fadeIn">
             <div className="headerContainer wrapper">
+                <button onClick={showMobileNav} className="menuIcon mobileOnly">
+                    <img src={menu} alt="Navigation" />
+                </button>
                 <div>
                     <h1><Link to="/">quinn rockliff</Link></h1>
                 </div>
 
-                <nav className="mainNav">
+                <nav className="mainNav hiddenOnMobile">
                     <Link to="/">Shop</Link>
                     <Link to="/commissions">Commissions</Link>
                     <Link to="/press">Press</Link>

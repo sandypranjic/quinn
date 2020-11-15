@@ -17,7 +17,7 @@ const About = () => {
     return (
         <section className="fadeIn wrapper about">
             <div className="imageContainer">
-                <img src={portrait2} alt="" className="installPortrait" />
+                <img src={portrait2} alt="" className="installPortrait hiddenOnMobile" />
                 <img src={installPortrait} alt="" className="installPortrait" />
             </div>
 

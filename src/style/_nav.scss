@@ -1,0 +1,44 @@
+.mobileNavContainer {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: calc(100vw - 25px);
+    height: 100vh;
+    z-index: 1000;
+    background-color: $accent2;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    .closeNav {
+        height: 40px;
+        display: flex;
+        justify-content: flex-end;
+        button {
+            height: 40px;
+            cursor: pointer;
+            img {
+                object-fit: contain;
+                height: 100%;
+            }
+        }
+    }
+    nav {
+        height: calc(100vh - 65px);
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        a {
+            font-size: 3rem;
+            @include accentTextItalic;
+            &:not(:last-of-type) {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.showNav {
+    left: 0;
+    transition: all 0.5s ease;
+}

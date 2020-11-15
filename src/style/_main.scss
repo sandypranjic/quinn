@@ -8,14 +8,18 @@ main {
             display: flex;
             flex-wrap: nowrap;
             img {
-                // width: 50%;
-                // flex-basis: 100%;
                 &:first-of-type {
                     width: calc(100% / 3);
                     margin-right: 50px;
+                    @include tablet {
+                        margin-right: 25px;
+                    }
                 }
                 &:last-of-type {
                     width: calc(100% / 3 * 2);
+                    @include mobile {
+                        width: 100%;
+                    }
                 }
             }
         }
@@ -37,6 +41,9 @@ main {
             .company {
                 @include accentTextItalic;
                 font-size: 2.5rem;
+                @include tablet {
+                    font-size: 2rem;
+                }
             }
             a {
                 color: $text;
@@ -78,8 +85,15 @@ main {
             label {
                 width: calc(50% - 12.5px);
                 margin-bottom: 10px;
+                @include tablet {
+                    width: 100%;
+                    margin-bottom: 25px;
+                }
                 &:first-of-type {
                     margin-right: 25px;
+                    @include tablet {
+                        margin-right: 0;
+                    }
                 }
                 input, textarea {
                     display: block;
@@ -121,16 +135,29 @@ main {
         .columnContainer {
             display: flex;
             justify-content: space-between;
-            align-items: start;
+            align-items: flex-start;
+            @include tablet {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
             .column {
                 width: calc(100% / 3);
                 display: flex;
                 flex-direction: column;
+                @include tablet {
+                    width: 100%;
+                }
                 &:first-of-type {
                     margin-right: 10px;
+                    @include tablet {
+                        margin-right: 0;
+                    }
                 }
                 &:last-of-type {
                     margin-left: 10px;
+                    @include tablet {
+                        margin-left: 0;
+                    }
                 }
                 img {
                     object-fit: contain;

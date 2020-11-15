@@ -31,36 +31,62 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: nowrap;
+        @include mobile {
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
     }
     .footerNav {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         width: 30%;
+        @include mobile {
+            margin-bottom: 15px;
+        }
     }
     .innerContainer {
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
         width: 60%;
+        @include mobile {
+            flex-direction: column;
+        }
     }
     .contact {
+        @include mobile {
+            margin-bottom: 25px;
+        }
         .colon {
             height: 10px;
         }
         p {
             @include accentText;
             font-size: 2.2rem;
+            @include tablet {
+                font-size: 1.8rem;
+            }
+            @include mobile {
+                font-size: 1.5rem;
+            }
         }
     }
     .youAreGood {
-        width: 10%;
+        width: 15%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        @include mobile {
+            width: 100%;
+        }
         img {
             object-fit: contain;
             width: 100%;
+            @include mobile {
+                height: 100px;
+            }
         }
     }
     .credit {

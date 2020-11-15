@@ -65,11 +65,57 @@ const Shop = ({ props }) => {
         }
     }, [filteredList]);
 
-    const productTypes = ['print', 'tote', 'top', 'card', 'gift card'];
+    const productTypes = ['print', 'tote', 'top', 'stationary', 'gift card'];
+
+    const filterWithOneItem = () => {
+        if (totalAmt === 1) {
+            return true;
+        }
+    };
+
+    const columnOneOdd = (index) => {
+        if (totalAmt % 2 !== 0) {
+            if (index < ((totalAmt / 2) - 1)) {
+                return true;
+            }
+        }
+    }
+
+    const columnOneEven = (index) => {
+        if (totalAmt % 2 === 0) {
+            if (index < totalAmt / 2) {
+                return true;
+            }
+        }
+    }
+
+    const columnTwoOdd = (index) => {
+        if (totalAmt !== 1 && totalAmt % 2 !== 0) {
+            if (index >= ((totalAmt / 2) - 1)) {
+                return true;
+            }
+        }
+    }
+
+    const columnTwoEven = (index) => {
+        if (totalAmt % 2 === 0) {
+            if (index >= totalAmt / 2) {
+                return true;
+            }
+        }
+    }
 
     return (
         <>
             <section className="shop wrapper fadeIn">
+            <h2>
+                Shop
+                {
+                    productFilter === ''
+                    ? ' > All'
+                    : ` > ${productFilter}s`
+                }
+            </h2>
             <div className="filter">
                 <h3>
                     Filter by:
@@ -81,27 +127,22 @@ const Shop = ({ props }) => {
                     {
                         productTypes.map((filter) => (
                             <li>
-                                <button onClick={() => { if (productFilter !== filter) { setProductFilter(filter); } }} className={productFilter === filter ? 'selectedFilter' : null} type="button">{filter}s</button>
+                                <button onClick={() => { if (productFilter !== filter) { setProductFilter(filter); } }} className={productFilter === filter ? 'selectedFilter' : null} type="button">
+                                {filter}
+                                {filter !== 'stationary' ? 's' : null}
+                                </button>
                             </li>
                         ))
                     }
                 </ul>
             </div>
-                <h2>
-                    Shop
-                    {
-                        productFilter === ''
-                        ? ' > All'
-                        : ` > ${productFilter}s`
-                    }
-                </h2>
                 <div className="products column">
                     {
                         filteredList.map((product, index) => {
-                            if (product.attrs.images[0] && product.attrs.images[0].src && (index < (totalAmt / 2) || totalAmt === 1)) {
+                            if (product.attrs.images[0] && product.attrs.images[0].src && (columnOneEven(index) || columnOneOdd(index) || filterWithOneItem())) {
                                 if (productFilter === '' || (productFilter === product.productType)) {
                                     return (
-                                        <ProductInList product={product} />
+                                        <ProductInList key={product.id} product={product} />
                                     )
                                 }
                             }
@@ -112,10 +153,10 @@ const Shop = ({ props }) => {
                 <div className="products column">
                     {
                         filteredList.map((product, index) => {
-                            if (product.attrs.images[0] && product.attrs.images[0].src && index >= (totalAmt / 2)) {
+                            if (product.attrs.images[0] && product.attrs.images[0].src && (columnTwoOdd(index) || columnTwoEven(index))) {
                                 if (productFilter === '' || (productFilter === product.productType)) {
                                     return (
-                                        <ProductInList product={product} />
+                                        <ProductInList key={product.id} product={product} />
                                     )
                                 }
                             }

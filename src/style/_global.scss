@@ -34,6 +34,14 @@ body {
     width: 70%;
     max-width: 70%;
     margin: 0 auto;
+    @include tablet {
+        width: 80%;
+        max-width: 80%;
+    }
+    @include mobile {
+        width: 90%;
+        max-width: 90%;
+    }
 }
 
 button {
@@ -75,6 +83,22 @@ p, span, button {
 section {
     p {
         line-height: 1.5;
+    }
+}
+
+.hiddenOnMobile {
+    @include tablet {
+        display: none;
+    }
+    @include mobile {
+        display: none;
+    }
+}
+
+.mobileOnly {
+    display: none;
+    @include tablet {
+        display: block;
     }
 }
 

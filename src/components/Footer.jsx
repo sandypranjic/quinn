@@ -6,7 +6,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
 
 // Images
-import youAreGood from '../assets/youaregood.png';
+import youAreGood from '../assets/youaregoodwhite.png';
 import colon from '../assets/colon.svg';
 
 const Footer = () => {

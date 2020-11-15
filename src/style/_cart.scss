@@ -112,3 +112,13 @@
     color: $deepAccent;
     padding: 2px;
 }
+
+.emptyCart {
+    span {
+        display: block;
+        @include accentTextItalic;
+        font-size: 2rem;
+        text-align: center;
+        margin-top: 25px;
+    }
+}

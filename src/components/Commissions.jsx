@@ -100,10 +100,11 @@ const Commissions = () => {
             <div className="columnContainer">
                 <div className="column">
                     {
-                        commissionImages.map((item) => {
+                        commissionImages.map((item, index) => {
                             if (item.column === 1) {
+                                console.log(index);
                                 return (
-                                    <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${item.index}`}>
+                                    <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${index}`}>
                                         <img src={item.img} alt="" />
                                     </ScrollAnimation>
                                 )
@@ -114,10 +115,11 @@ const Commissions = () => {
 
                 <div className="column">
                     {
-                        commissionImages.map((item) => {
+                        commissionImages.map((item, index) => {
                             if (item.column === 2) {
+                                console.log(index);
                                 return (
-                                    <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${item.index}`}>
+                                    <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${index}`}>
                                         <img src={item.img} alt="" />
                                     </ScrollAnimation>
                                 )
@@ -128,10 +130,10 @@ const Commissions = () => {
 
                 <div className="column">
                     {
-                        commissionImages.map((item) => {
+                        commissionImages.map((item, index) => {
                             if (item.column === 3) {
                                 return (
-                                    <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${item.index}`}>
+                                    <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${index}`}>
                                         <img src={item.img} alt="" />
                                     </ScrollAnimation>
                                 )
