@@ -18,7 +18,6 @@ const ItemInCart = ({ item, updateQuantity }) => {
     };
 
     const increaseQuantity = () => {
-        console.log('wow clicked!');
         let updated = newQuantity;
         if (updated === '') {
             updated = 1;
@@ -36,19 +35,10 @@ const ItemInCart = ({ item, updateQuantity }) => {
     };
 
     useEffect(() => {
-        console.log(item);
         if (item && item.id && newQuantity !== '') {
-            console.log('QUANTITY CHANGED ->', newQuantity);
-            console.log(item.id);
             updateQuantity(item.id, newQuantity);
         }
     }, [newQuantity]);
-
-    useEffect(() => {
-        if (item.quantity) {
-            console.log('quantity on item: ', item.quantity);
-        }
-    }, [item]);
 
     const remove = () => {
         updateQuantity(item.id, 0);

@@ -6,25 +6,12 @@ import close from '../../assets/close.svg';
 
 const Cart = ({ hideCart, showCart, shoppingCart, updateQuantity }) => {
 
-    // useEffect(() => {
-    //     if (shoppingCart && shoppingCart.lineItems) {
-    //         shoppingCart.lineItems.forEach((item) => {
-    //             console.log('VARIANT DATA HERE -------->', item.variant.image.src);
-    //         });
-    //     }
-    // }, [shoppingCart]);
-
     useEffect(() => {
-        const cart = document.getElementById('cart');
         const global = document.getElementById('global');
         if (showCart) {
-            // global.style.overflow = 'hidden';
-            // global.style.maxHeight = '100vh';
             global.style.opacity = '0.5';
         } else {
-            // global.style.overflow = 'scroll';
             global.style.opacity = '1';
-            // global.style.maxHeight = 'auto';
         }
     }, [showCart]);
 
@@ -54,7 +41,7 @@ const Cart = ({ hideCart, showCart, shoppingCart, updateQuantity }) => {
                     )
                     : (
                         <div className="emptyCart">
-                            <span>Your cart is empty.</span>
+                            <span>Your cart is empty. :(</span>
                         </div>
                     )
             }

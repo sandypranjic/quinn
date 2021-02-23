@@ -24,19 +24,6 @@ const Shop = ({ props }) => {
         }, 500);
     }, []);
 
-    // useEffect(() => {
-    //     if (props) {
-    //         console.log(props.products);
-    //         props.products.forEach((product) => {
-    //             console.log(product.attrs.images);
-    //         })
-    //     }
-    // }, [props])
-
-    const quickAdd = (id) => {
-        console.log(id);
-    };
-
     useEffect(() => {
         if (props && props.products) {
             setFilteredList(props.products);
@@ -65,7 +52,7 @@ const Shop = ({ props }) => {
         }
     }, [filteredList]);
 
-    const productTypes = ['print', 'tote', 'top', 'stationary', 'gift card'];
+    const productTypes = ['print', 'tote', 'top', 'stationary', 'gift card', 'original'];
 
     const filterWithOneItem = () => {
         if (totalAmt === 1) {

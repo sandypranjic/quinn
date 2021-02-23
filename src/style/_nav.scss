@@ -30,6 +30,7 @@
         justify-content: center;
         a {
             font-size: 3rem;
+            text-transform: lowercase;
             @include accentTextItalic;
             &:not(:last-of-type) {
                 margin-bottom: 10px;

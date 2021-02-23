@@ -8,6 +8,7 @@
     background-color: white;
     transition: all 0.3s ease;
     z-index: 100;
+    text-transform: lowercase;
 }
 .showCart {
     right: 0;
@@ -27,6 +28,7 @@
     }
     h2 {
         margin-bottom: 0;
+        margin-left: 10px;
     }
 }
 .items {
@@ -46,7 +48,6 @@
     img {
         width: 50%;
         object-fit: contain;
-        // margin-bottom: 10px;
         border: 5px solid $accent2;
     }
     h3 {
@@ -131,5 +132,6 @@
         font-size: 2rem;
         text-align: center;
         margin-top: 25px;
+        text-transform: lowercase;
     }
 }

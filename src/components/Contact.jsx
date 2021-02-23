@@ -31,7 +31,6 @@ const Contact = () => {
                 emailForm.reset();
         }, function(error) {
             setShowError(true);
-            console.log('FAILED...', error);
     });
     };
 

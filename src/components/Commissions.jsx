@@ -102,7 +102,6 @@ const Commissions = () => {
                     {
                         commissionImages.map((item, index) => {
                             if (item.column === 1) {
-                                console.log(index);
                                 return (
                                     <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${index}`}>
                                         <img src={item.img} alt="" />
@@ -117,7 +116,6 @@ const Commissions = () => {
                     {
                         commissionImages.map((item, index) => {
                             if (item.column === 2) {
-                                console.log(index);
                                 return (
                                     <ScrollAnimation animateIn="fadeIn" duration={1} offset={0} delay={1} key={`commission-${index}`}>
                                         <img src={item.img} alt="" />

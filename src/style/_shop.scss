@@ -7,7 +7,7 @@
     justify-content: space-between;
     h2 {
         width: 100%;
-        text-transform: capitalize;
+        text-transform: lowercase;
     }
     .soldOut {
         @include accentTextItalic;
@@ -164,7 +164,7 @@
                 left: 0;
                 width: 100%;
                 height: 10px;
-                background-color: $lightAccent;
+                background-color: $printColour;
                 z-index: -1;
                 opacity: 0;
                 transition: all 0.3s ease;
@@ -184,7 +184,7 @@
             left: 0;
             width: 100%;
             height: 10px;
-            background-color: rgba(195, 164, 146, 0.7);
+            background-color: $printColour;
             opacity: 1;
             z-index: -1;
             transition: all 0.3s ease;

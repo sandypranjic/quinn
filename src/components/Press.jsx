@@ -17,6 +17,11 @@ const Press = () => {
 
     const pressLinks = [
         {
+            company: 'CBC Arts',
+            date: 'January 2021',
+            url: 'https://www.cbc.ca/arts/by-drawing-her-body-over-and-over-quinn-rockliff-sees-herself-and-is-helping-others-do-the-same-1.5891645',
+        },
+        {
             company: 'Knix',
             date: 'May 2020',
             url: 'https://knix.com/blogs/knix-blog/drawing-self-love-with-quinn-rockliff',

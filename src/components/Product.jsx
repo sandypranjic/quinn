@@ -31,7 +31,6 @@ const Product = ({ props }) => {
     }, [props])
 
     const addToCart = (id) => {
-        console.log('made it here');
         if (selectedVariant !== '') {
             setShowVariantError(false);
             props.addToCart(id, quantity);
@@ -65,12 +64,6 @@ const Product = ({ props }) => {
     };
 
     useEffect(() => {
-        if (currentProduct.attrs) {
-            console.log(currentProduct.attrs.images);
-        }
-    }, [currentProduct]);
-
-    useEffect(() => {
         if (currentProduct && currentProduct.variants) {
             if (currentProduct.variants.length === 1) {
                 setSelectedVariant(0);
@@ -81,13 +74,8 @@ const Product = ({ props }) => {
     }, [currentProduct]);
 
     useEffect(() => {
-        console.log('SELECTED VARIANT:', selectedVariant);
         setShowVariantError(false);
     }, [selectedVariant]);
-
-    useEffect(() => {
-        console.log('show variant error? ', showVariantError);
-    }, [showVariantError]);
 
     return (
         <>
