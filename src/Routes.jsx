@@ -9,7 +9,7 @@ import Press from './components/Press';
 import Contact from './components/Contact';
 import Commissions from './components/Commissions';
 
-const Routes = ({ products, addToCart }) => {
+const Routes = ({ products, newProducts, addToCart }) => {
     const location = useLocation();
     const background = location.state && location.state.background;
 
@@ -21,6 +21,7 @@ const Routes = ({ products, addToCart }) => {
             exact: true,
             props: {
                 products: [...products],
+                newProducts: [...newProducts],
                 addToCart: addToCart,
             },
         },
@@ -31,6 +32,7 @@ const Routes = ({ products, addToCart }) => {
             exact: true,
             props: {
                 products: [...products],
+                newProducts: [...newProducts],
                 addToCart: addToCart,
             },
         },
@@ -71,13 +73,8 @@ const Routes = ({ products, addToCart }) => {
                     routes.map(({component: Cmp, ...route}, i) => (
                         <Route
                             key={route.path}
-                            // path={route.path}
-                            // exact={route.exact}
-                            // component={route.component}
                             {...route}
                             render={props => <Cmp props={route.props} />} 
-                            // props={route.props}
-                            // props={route.text === 'Shop' ? products : null}
                         />
                     ))
                 }

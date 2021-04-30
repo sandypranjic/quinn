@@ -3,11 +3,7 @@ import { Link, Route } from "react-router-dom";
 import ProductInList from './ProductInList';
 
 // Animations
-import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
-
-// Images
-import add from '../assets/add.svg';
 
 // Utilities
 import scrollToTop from '../utilities/scrollToTop';
@@ -18,6 +14,19 @@ const Shop = ({ props }) => {
 
     const [filteredList, setFilteredList] = useState([]);
 
+    const newItemIds = props.newProducts.map((item) => (item.id));
+    const newItems = props.products.filter((item) => ([...newItemIds].includes(item.id)));
+
+    const orderNewItems = () => {        
+        const ordered = props.products.filter((item) => (![...newItemIds].includes(item.id)));
+
+        newItems.forEach((item) => {
+            ordered.unshift(item);
+        });
+
+        return ordered;
+    };
+
     useEffect(() => {
         setTimeout(() => {
             scrollToTop();
@@ -26,22 +35,28 @@ const Shop = ({ props }) => {
 
     useEffect(() => {
         if (props && props.products) {
-            setFilteredList(props.products);
+            const ordered = orderNewItems();
+            setFilteredList(ordered);
         }
     }, [props]);
 
     useEffect(() => {
         if (filteredList) {
             if (productFilter !== '') {
-                const updated = [];
-                props.products.forEach((item) => {
-                    if (productFilter === item.productType) {
-                        updated.push(item);
-                    }
-                });
-                setFilteredList([...updated]);
+                if (productFilter === 'new') {
+                    setFilteredList([...newItems]);
+                } else {
+                    const updated = [];
+                    props.products.forEach((item) => {
+                        if (productFilter === item.productType) {
+                            updated.push(item);
+                        }
+                    });
+                    setFilteredList([...updated]);
+                }
             } else {
-                setFilteredList(props.products);
+                const ordered = orderNewItems();
+                setFilteredList(ordered);
             }
         }
     }, [productFilter]);
@@ -52,7 +67,7 @@ const Shop = ({ props }) => {
         }
     }, [filteredList]);
 
-    const productTypes = ['print', 'tote', 'top', 'stationary', 'gift card', 'original'];
+    const productTypes = ['new', 'print', 'tote', 'top', 'stationary', 'gift card', 'original'];
 
     const filterWithOneItem = () => {
         if (totalAmt === 1) {
@@ -92,6 +107,14 @@ const Shop = ({ props }) => {
         }
     }
 
+    const formatFilterName = (name) => {
+        if (['new', 'stationary'].includes(name)) {
+            return name;
+        } else {
+            return `${name}s`;
+        }
+    };
+
     return (
         <>
             <section className="shop wrapper fadeIn">
@@ -100,7 +123,7 @@ const Shop = ({ props }) => {
                 {
                     productFilter === ''
                     ? ' > All'
-                    : ` > ${productFilter}s`
+                    : ` > ${formatFilterName(productFilter)}`
                 }
             </h2>
             <div className="filter">
@@ -115,8 +138,7 @@ const Shop = ({ props }) => {
                         productTypes.map((filter) => (
                             <li key={filter}>
                                 <button onClick={() => { if (productFilter !== filter) { setProductFilter(filter); } }} className={productFilter === filter ? 'selectedFilter' : null} type="button">
-                                {filter}
-                                {filter !== 'stationary' ? 's' : null}
+                                {formatFilterName(filter)}
                                 </button>
                             </li>
                         ))
@@ -132,7 +154,9 @@ const Shop = ({ props }) => {
                     {
                         filteredList.map((product, index) => {
                             if (product.attrs.images[0] && product.attrs.images[0].src && (columnOneEven(index) || columnOneOdd(index) || filterWithOneItem())) {
-                                if (productFilter === '' || (productFilter === product.productType)) {
+                                if (productFilter === ''
+                                || (productFilter === product.productType)
+                                || (productFilter === 'new' && newItemIds.includes(product.id))) {
                                     return (
                                         <ProductInList key={product.id} product={product} />
                                     )
@@ -146,7 +170,10 @@ const Shop = ({ props }) => {
                     {
                         filteredList.map((product, index) => {
                             if (product.attrs.images[0] && product.attrs.images[0].src && (columnTwoOdd(index) || columnTwoEven(index))) {
-                                if (productFilter === '' || (productFilter === product.productType)) {
+                                if (productFilter === ''
+                                || (productFilter === product.productType)
+                                || (productFilter === 'new' && newItemIds.includes(product.id))
+                                ) {
                                     return (
                                         <ProductInList key={product.id} product={product} />
                                     )
