@@ -40,7 +40,8 @@ const App = () => {
   
   useEffect(() => {
     client.product.fetchAll().then((products) => {
-      setProducts(products);
+      const hideOriginals = products.filter((prod) => (prod.productType !== 'original'));
+      setProducts(hideOriginals);
     });
     client.collection.fetchAllWithProducts().then((collections) => {
       const newCollection = collections.filter((col) => (col.title === 'new'));

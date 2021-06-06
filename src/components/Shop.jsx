@@ -67,8 +67,9 @@ const Shop = ({ props }) => {
         }
     }, [filteredList]);
 
-    const productTypes = ['new', 'print', 'tote', 'top', 'stationary', 'gift card', 'original'];
-
+    // const productTypes = ['new', 'print', 'tote', 'top', 'stationary', 'gift card', 'original'];
+    const productTypes = ['new', 'print', 'tote', 'top', 'stationary', 'gift card'];
+    
     const filterWithOneItem = () => {
         if (totalAmt === 1) {
             return true;
