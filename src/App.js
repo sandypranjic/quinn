@@ -15,6 +15,7 @@ const App = () => {
   const [token, setToken] = useState("97c0500f32570b8cf862172699bf5e2b");
   const [products, setProducts] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
+  const [originals, setOriginals] = useState([]);
   const [checkoutId, setCheckoutId] = useState('');
   const [showCart, setShowCart] = useState(false);
 
@@ -40,13 +41,17 @@ const App = () => {
   
   useEffect(() => {
     client.product.fetchAll().then((products) => {
-      const hideOriginals = products.filter((prod) => (prod.productType !== 'original'));
-      setProducts(hideOriginals);
+      setProducts(products);
     });
     client.collection.fetchAllWithProducts().then((collections) => {
       const newCollection = collections.filter((col) => (col.title === 'new'));
       if (newCollection[0]) {
         setNewProducts(newCollection[0].products);
+      }
+
+      const originalsCollection = collections.filter((col) => (col.title === 'originals'));
+      if (originalsCollection[0]) {
+        setOriginals(originalsCollection[0].products);
       }
     });
   }, []);
@@ -99,7 +104,7 @@ const App = () => {
           showMobileNav={showMobileNav}
         />
         <main id="main">
-          <Routes products={products} newProducts={newProducts} addToCart={addToCart} />
+          <Routes products={products} newProducts={newProducts} addToCart={addToCart} originals={originals} />
         </main>
         <Footer />
       </div>

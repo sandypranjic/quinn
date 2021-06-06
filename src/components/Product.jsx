@@ -136,7 +136,7 @@ const Product = ({ props }) => {
 
                                 <div className="addToCart">
                                     {
-                                        currentProduct.availableForSale
+                                        currentProduct.availableForSale && currentProduct.productType !== 'original'
                                             ? (
                                                 <>
                                                     <button id="addToCartButton" onClick={() => { if (selectedVariant !== undefined && selectedVariant !== '') { addToCart(currentProduct.variants[selectedVariant].id) } else { setShowVariantError(true); } }} type="button" className={selectedVariant === '' ? 'inactiveButton' : null}>
@@ -160,6 +160,19 @@ const Product = ({ props }) => {
                                             : null
                                     }
                                 </div>
+
+                                {
+                                    currentProduct.availableForSale && currentProduct.productType === 'original' && (
+                                        <div className="originals">
+                                            <p className="privateSale">please contact quinn@quinnrockliff.com to purchase originals</p>
+
+                                            <a href="mailto:quinn@quinnrockliff.com?subject=originals">
+                                                <span>contact</span>
+                                            </a>
+                                        </div>
+                                    )
+                                }
+
                                 {!currentProduct.availableForSale ? <p className="soldOutNotification">This item is sold out.</p> : null}
                             </div>
 

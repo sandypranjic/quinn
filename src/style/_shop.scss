@@ -84,7 +84,7 @@
                 height: 100%;
             }
         }
-        .addToCart {
+        .addToCart, .originals {
             position: absolute;
             bottom: 0px;
             left: 0px;
@@ -108,7 +108,7 @@
                 width: 25px;
             }
         }
-        .productPreview:hover .addToCart {
+        .productPreview:hover .addToCart, .originals {
             height: 40px;
         }
         .productInfo {
@@ -275,9 +275,9 @@
             padding: 10px;
         }
     }
-    .addToCart {
+    .addToCart, .originals {
         margin-top: 25px;
-        button {
+        button, a {
             min-width: 100px;
             height: 28px;
             margin: 0;
@@ -298,6 +298,9 @@
                 opacity: 0;
             }
         }
+        a {
+            width: 100px;
+        }
         .inactiveButton {
             &:hover {
                 background-color: transparent;
@@ -314,9 +317,10 @@
         font-size: 1.8rem;
         @include accentTextItalic;
     }
-    .soldOutNotification {
+    .soldOutNotification, .privateSale {
         @include accentTextItalic;
         font-size: 2rem;
+        margin-bottom: 25px;
     }
 }
 

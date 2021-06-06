@@ -9,7 +9,7 @@ import Press from './components/Press';
 import Contact from './components/Contact';
 import Commissions from './components/Commissions';
 
-const Routes = ({ products, newProducts, addToCart }) => {
+const Routes = ({ products, newProducts, addToCart, originals }) => {
     const location = useLocation();
     const background = location.state && location.state.background;
 
@@ -22,6 +22,7 @@ const Routes = ({ products, newProducts, addToCart }) => {
             props: {
                 products: [...products],
                 newProducts: [...newProducts],
+                originals: [...originals],
                 addToCart: addToCart,
             },
         },
@@ -33,6 +34,7 @@ const Routes = ({ products, newProducts, addToCart }) => {
             props: {
                 products: [...products],
                 newProducts: [...newProducts],
+                originals: [...originals],
                 addToCart: addToCart,
             },
         },

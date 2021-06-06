@@ -17,10 +17,17 @@ const Shop = ({ props }) => {
     const newItemIds = props.newProducts.map((item) => (item.id));
     const newItems = props.products.filter((item) => ([...newItemIds].includes(item.id)));
 
+    const originalIds = props.originals.map((item) => (item.id));
+    const originalItems = props.products.filter((item) => ([...originalIds].includes(item.id)))
+
     const orderNewItems = () => {        
-        const ordered = props.products.filter((item) => (![...newItemIds].includes(item.id)));
+        const ordered = props.products.filter((item) => (![...newItemIds].includes(item.id) && ![...originalIds].includes(item.id)));
 
         newItems.forEach((item) => {
+            ordered.unshift(item);
+        });
+
+        originalItems.forEach((item) => {
             ordered.unshift(item);
         });
 
@@ -67,8 +74,7 @@ const Shop = ({ props }) => {
         }
     }, [filteredList]);
 
-    // const productTypes = ['new', 'print', 'tote', 'top', 'stationary', 'gift card', 'original'];
-    const productTypes = ['new', 'print', 'tote', 'top', 'stationary', 'gift card'];
+    const productTypes = ['new', 'original', 'print', 'tote', 'top', 'stationary', 'gift card'];
     
     const filterWithOneItem = () => {
         if (totalAmt === 1) {
