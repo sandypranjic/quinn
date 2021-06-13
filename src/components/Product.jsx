@@ -164,9 +164,9 @@ const Product = ({ props }) => {
                                 {
                                     currentProduct.availableForSale && currentProduct.productType === 'original' && (
                                         <div className="originals">
-                                            <p className="privateSale">please contact quinn@quinnrockliff.com to purchase originals</p>
+                                            <p className="privateSale">please contact quinnrockliff@gmail.com to purchase originals</p>
 
-                                            <a href="mailto:quinn@quinnrockliff.com?subject=originals">
+                                            <a href="mailto:quinnrockliff@gmail.com?subject=originals">
                                                 <span>contact</span>
                                             </a>
                                         </div>
