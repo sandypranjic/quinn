@@ -43,7 +43,7 @@ const App = () => {
     client.product.fetchAll().then((products) => {
       setProducts(products);
     });
-    client.collection.fetchAllWithProducts().then((collections) => {
+    client.collection.fetchAllWithProducts({productsFirst: 50}).then((collections) => {
       const newCollection = collections.filter((col) => (col.title === 'new'));
       if (newCollection[0]) {
         setNewProducts(newCollection[0].products);

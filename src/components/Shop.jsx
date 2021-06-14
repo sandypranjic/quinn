@@ -18,7 +18,6 @@ const Shop = ({ props }) => {
     const newItems = props.products.filter((item) => ([...newItemIds].includes(item.id)));
 
     const originalIds = props.originals.map((item) => (item.id));
-    const originalItems = props.products.filter((item) => ([...originalIds].includes(item.id)))
 
     const orderNewItems = () => {        
         const ordered = props.products.filter((item) => (![...newItemIds].includes(item.id) && ![...originalIds].includes(item.id)));
@@ -27,7 +26,7 @@ const Shop = ({ props }) => {
             ordered.unshift(item);
         });
 
-        originalItems.forEach((item) => {
+        props.originals.forEach((item) => {
             ordered.unshift(item);
         });
 
@@ -52,6 +51,8 @@ const Shop = ({ props }) => {
             if (productFilter !== '') {
                 if (productFilter === 'new') {
                     setFilteredList([...newItems]);
+                } else if (productFilter === 'original') {
+                    setFilteredList([...props.originals]);
                 } else {
                     const updated = [];
                     props.products.forEach((item) => {

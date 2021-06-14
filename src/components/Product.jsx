@@ -28,6 +28,12 @@ const Product = ({ props }) => {
                 setCurrentProduct(product);
             }
         });
+
+        props.originals.forEach((product) => {
+            if (product.id === productId) {
+                setCurrentProduct(product);
+            }
+        });
     }, [props])
 
     const addToCart = (id) => {
