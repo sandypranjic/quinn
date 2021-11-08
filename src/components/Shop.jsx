@@ -74,7 +74,11 @@ const Shop = ({ props }) => {
                     const updated = [];
                     props.products.forEach((item) => {
                         if (productFilter === item.productType) {
-                            updated.push(item);
+                            if (priorityIds.includes(item.id)) {
+                                updated.unshift(item);
+                            } else {
+                                updated.push(item);
+                            }
                         }
                     });
                     setFilteredList([...updated]);
