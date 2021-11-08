@@ -15,6 +15,7 @@ const App = () => {
   const [token, setToken] = useState("97c0500f32570b8cf862172699bf5e2b");
   const [products, setProducts] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
+  const [priorityProducts, setPriorityProducts] = useState([]);
   const [originals, setOriginals] = useState([]);
   const [checkoutId, setCheckoutId] = useState('');
   const [showCart, setShowCart] = useState(false);
@@ -40,13 +41,18 @@ const App = () => {
   };
   
   useEffect(() => {
-    client.product.fetchAll().then((products) => {
+    client.product.fetchAll(100).then((products) => {
       setProducts(products);
     });
     client.collection.fetchAllWithProducts({productsFirst: 50}).then((collections) => {
       const newCollection = collections.filter((col) => (col.title === 'new'));
       if (newCollection[0]) {
         setNewProducts(newCollection[0].products);
+      }
+
+      const priorityCollection = collections.filter((col) => (col.title === 'priority'));
+      if (priorityCollection[0]) {
+        setPriorityProducts(priorityCollection[0].products);
       }
 
       const originalsCollection = collections.filter((col) => (col.title === 'originals'));
@@ -104,7 +110,13 @@ const App = () => {
           showMobileNav={showMobileNav}
         />
         <main id="main">
-          <Routes products={products} newProducts={newProducts} addToCart={addToCart} originals={originals} />
+          <Routes
+            products={products}
+            newProducts={newProducts}
+            addToCart={addToCart}
+            originals={originals}
+            priorityProducts={priorityProducts}
+          />
         </main>
         <Footer />
       </div>

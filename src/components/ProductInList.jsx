@@ -8,7 +8,7 @@ import "animate.css/animate.min.css";
 const ProductInList = ({ product }) => {
     return (
         <>
-            <ScrollAnimation animateIn="fadeIn" duration={0.5} offset={0} delay={0} key={Math.random()} className="productContainer">
+            <ScrollAnimation animateIn="fadeIn" duration={0.1} offset={0} delay={0} key={Math.random()} className="productContainer">
                 <div className="productPreview">
                     <Link to={`/products/${product.id}`}>
                         <img className="productImage" src={product.attrs.images[0].src} alt="" />

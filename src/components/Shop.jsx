@@ -19,18 +19,35 @@ const Shop = ({ props }) => {
 
     const originalIds = props.originals.map((item) => (item.id));
 
+    const priorityIds = props?.priorityProducts?.map((item) => (item.id));
+
     const orderNewItems = () => {        
-        const ordered = props.products.filter((item) => (![...newItemIds].includes(item.id) && ![...originalIds].includes(item.id)));
+        const ordered = props.products.filter((item) => (![...newItemIds].includes(item.id) && ![...originalIds].includes(item.id) && ![...priorityIds].includes(item.id)));
 
         newItems.forEach((item) => {
-            ordered.unshift(item);
+            if (![priorityIds].includes(item.id)) {
+                ordered.unshift(item);
+            }
         });
 
         props.originals.forEach((item) => {
             ordered.unshift(item);
         });
 
-        return ordered;
+        props.priorityProducts?.forEach((item) => {
+            ordered.unshift(item);
+        });
+
+        let uniqueIds = [...new Set(ordered.map((item) => (item.id)))]
+
+        const unique = ordered.map((item) => {
+            if (uniqueIds.includes(item.id)) {
+                uniqueIds = uniqueIds.filter((it) => (it !== item.id))
+                return item;
+            }
+        }).filter((it) => it);
+
+        return unique;
     };
 
     useEffect(() => {
@@ -166,7 +183,7 @@ const Shop = ({ props }) => {
                                 || (productFilter === product.productType)
                                 || (productFilter === 'new' && newItemIds.includes(product.id))) {
                                     return (
-                                        <ProductInList key={product.id} product={product} />
+                                        <ProductInList key={`${product.id}-${product.title}`} product={product} />
                                     )
                                 }
                             }
